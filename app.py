@@ -21,15 +21,16 @@ def show_question(quest_index):
     """Show yes or no question""" 
 
     if responses is None:
-        # They are trying to skip ahead? I don't think so.
+        # Trying to skip ahead? I don't think so.
         return redirect("/")
 
-    if (len(responses) == len(satisfaction_survey.questions)):
-        # They've answered all the questions! Thank them.
+    answered_all_questions = (len(responses) == len(satisfaction_survey.questions))
+    if answered_all_questions:
+        # Thank them.
         return redirect("/complete")
 
-    if (len(responses) != quest_index): 
-        # Trying to access a question out of order.
+    trying_to_access_invalid_number = (len(responses) != quest_index)
+    if trying_to_access_invalid_number: 
         flash(f"Invalid question number: {quest_index}.")
         return redirect(f"/questions/{len(responses)}")
 
