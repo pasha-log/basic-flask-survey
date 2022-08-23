@@ -1,0 +1,19 @@
+{% extends 'base.html' %} 
+{% block title %}Questions{% endblock %} 
+{% block content %}
+<h1>Please answer this:</h1>
+
+
+<form action="/answer" method="POST">
+    <p>{{question}}</p>
+    
+    <input type="radio" id="option1" name="option" value="{{choice_1}}">
+    <label for="Yes">{{choice_1}}</label><br>
+    <input type="radio" id="option2" name="option" value="{{choice_2}}">
+    <label for="No">{{choice_2}}</label><br>
+    <button>Submit answer</button> 
+</form>
+{% endblock %} 
+
+<!-- Goal: if starting survey, start with the first question. Everytime we get an answer, append to responses, and loop to the next
+question on the list. Once we reach the end of the list, say thank you. -->
